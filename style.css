@@ -1,0 +1,333 @@
+/* Optional: nicer font */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+
+:root {
+  --accent: #6c5ce7;
+  --accent-soft: #a29bfe;
+  --accent-alt: #ff7675;
+  --bg-dark: #050714;
+  --bg-card: rgba(16, 18, 40, 0.96);
+  --neon-green: #00ffb0;
+}
+
+/* Animated background gradient */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(circle at top left, #2d3436, #000);
+  background-size: 200% 200%;
+  animation: bgShift 15s ease-in-out infinite;
+  color: #f5f5f5;
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+@keyframes bgShift {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+/* HEADER */
+
+.main-header {
+  background: linear-gradient(
+    135deg,
+    rgba(15, 15, 40, 0.95),
+    rgba(15, 23, 42, 0.95)
+  );
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 1.2rem;
+  background: conic-gradient(from 180deg, #fd79a8, #ffeaa7, #00cec9, #6c5ce7, #fd79a8);
+  box-shadow: 0 0 18px rgba(162, 155, 254, 0.8);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.brand-subtitle {
+  font-size: 0.7rem;
+  color: #b2bec3;
+}
+
+.header-pills {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.badge-chip {
+  background: rgba(108, 92, 231, 0.15);
+  border-radius: 999px;
+  padding: 0.25rem 0.9rem;
+  font-size: 0.7rem;
+  border: 1px solid rgba(162, 155, 254, 0.5);
+}
+
+/* LAYOUT: CSS GRID */
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+  gap: 1.8rem;
+}
+
+@media (max-width: 900px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* GLASS CARDS */
+
+.glass-card {
+  background: var(--bg-card);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(162, 155, 254, 0.5);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+  padding: 1.7rem;
+  backdrop-filter: blur(18px);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(
+    circle at top left,
+    rgba(162, 155, 254, 0.35),
+    transparent 60%
+  );
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* gradient titles */
+
+.hero-title {
+  font-size: 1.4rem;
+  margin-bottom: 0.25rem;
+  background: linear-gradient(120deg, #ffeaa7, #fd79a8, #a29bfe);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-title--secondary {
+  background: linear-gradient(120deg, #74b9ff, #55efc4, #a29bfe);
+}
+
+/* =========================
+   CALCULATOR
+========================= */
+
+.calculator {
+  background: radial-gradient(circle at top, #111827, #050714);
+  padding: 1.1rem;
+  border-radius: 1.2rem;
+  max-width: 380px;
+  margin-inline: auto;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.7),
+    0 16px 35px rgba(0, 0, 0, 0.9);
+  position: relative;
+  overflow: hidden;
+}
+
+.calculator::after {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(
+    circle at bottom right,
+    rgba(0, 255, 176, 0.2),
+    transparent 60%
+  );
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.calc-display {
+  width: 100%;
+  height: 60px;
+  background: #020617;
+  border: none;
+  outline: none;
+  color: var(--neon-green);
+  font-size: 1.6rem;
+  padding: 0.6rem 0.85rem;
+  margin-bottom: 1rem;
+  border-radius: 0.8rem;
+  text-align: right;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.9);
+}
+
+/* Grid layout for buttons */
+.calc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+/* Base button styles */
+.btn-calc,
+.btn-op,
+.btn-clear,
+.equals {
+  padding: 0.75rem;
+  font-size: 1.15rem;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  color: #ffffff;
+  background: #111827;
+  box-shadow:
+    0 6px 14px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(148, 163, 184, 0.4);
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.15s ease,
+    background 0.2s ease,
+    filter 0.2s ease;
+}
+
+/* Numbers: blue-ish gradient */
+.btn-calc {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+}
+
+/* Operators: purple gradient */
+.btn-op {
+  background: linear-gradient(135deg, #4b3f72, #6c5ce7);
+}
+
+/* Clear: red */
+.btn-clear {
+  background: linear-gradient(135deg, #ff7675, #d63031);
+}
+
+/* Equals spans full width with neon look */
+.equals {
+  grid-column: span 4;
+  background: linear-gradient(135deg, #00ffb0, #00cec9);
+  color: #03161a;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+/* Hover + active effects */
+.btn-calc:hover,
+.btn-op:hover,
+.btn-clear:hover,
+.equals:hover {
+  filter: brightness(1.15);
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.9),
+    0 0 12px rgba(162, 155, 254, 0.7);
+}
+
+.btn-calc:active,
+.btn-op:active,
+.btn-clear:active,
+.equals:active {
+  transform: translateY(1px) scale(0.97);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.8),
+    0 0 4px rgba(0, 0, 0, 0.6);
+}
+
+/* =========================
+   POPMOTION PANEL
+========================= */
+
+.animation-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+}
+
+.animation-stage {
+  background: radial-gradient(circle at top, #020617, #000);
+  border-radius: 1.1rem;
+  padding: 1rem 0.75rem;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 190px;
+  overflow: hidden;
+  position: relative;
+}
+
+.anim-box {
+  width: 80px;
+  height: 80px;
+  border-radius: 1.7rem;
+  background: conic-gradient(
+    from 120deg,
+    #fd79a8,
+    #ffeaa7,
+    #00cec9,
+    #6c5ce7,
+    #fd79a8
+  );
+  box-shadow: 0 14px 30px rgba(9, 132, 227, 0.65);
+  transform-origin: center;
+}
+
+/* Popmotion control buttons styled a bit more */
+
+.fancy-btn {
+  border-radius: 999px;
+  padding-inline: 1.2rem;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.7);
+}
+
+.fancy-btn-secondary {
+  border-radius: 999px;
+}
+
+/* FOOTER */
+
+.footer {
+  background: rgba(3, 7, 18, 0.9);
+}
+
+.footer-links a {
+  color: #a29bfe;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
